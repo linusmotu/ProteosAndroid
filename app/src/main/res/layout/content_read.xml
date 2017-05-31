@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.aquosense.proteos.ReadActivity">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/img_logo"
+        android:src="@drawable/aquosense_logo"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: Disconnected"
+        android:id="@+id/txv_conn_status"
+        android:layout_below="@+id/img_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:layout_below="@+id/txv_conn_status"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/gridLayout">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#FF204A87"
+            android:minWidth="150dp"
+            android:layout_rowWeight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:text="pH:"
+                android:id="@+id/lbl_ph"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:text="7.00"
+                android:id="@+id/txv_ph"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/lbl_ph"
+                android:layout_alignStart="@+id/lbl_ph"
+                android:layout_marginBottom="15dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#FF204A87"
+            android:minWidth="150dp"
+            android:layout_rowWeight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:text="Conductivity:"
+                android:id="@+id/lbl_ec"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:text="146,000"
+                android:id="@+id/txv_ec"
+                android:layout_below="@+id/lbl_ec"
+                android:layout_marginLeft="15dp"
+                android:layout_alignStart="@id/lbl_ec"
+                android:layout_marginBottom="15dp"
+                android:textSize="21dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:text="μS/cm"
+                android:id="@+id/lbl_c_units"
+                android:layout_below="@+id/lbl_ec"
+                android:layout_toEndOf="@+id/txv_ec"
+                android:layout_marginLeft="3dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#FF204A87"
+            android:minWidth="150dp"
+            android:layout_rowWeight="1"
+            android:nestedScrollingEnabled="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:text="Dissolved Oxygen:"
+                android:id="@+id/lbl_do"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:text="9.89"
+                android:id="@+id/txv_do"
+                android:layout_below="@+id/lbl_do"
+                android:layout_marginLeft="15dp"
+                android:layout_alignStart="@+id/lbl_do"
+                android:layout_marginBottom="15dp"
+                android:textSize="21dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:text="mg/L"
+                android:id="@+id/lbl_do_units"
+                android:layout_below="@+id/lbl_do"
+                android:layout_toEndOf="@+id/txv_do"
+                android:layout_marginLeft="3dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#FF204A87"
+            android:minWidth="150dp"
+            android:layout_rowWeight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:text="Temperature"
+                android:id="@+id/lbl_temp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:text="36.9"
+                android:id="@+id/txv_temp"
+                android:layout_below="@+id/lbl_temp"
+                android:layout_marginLeft="15dp"
+                android:layout_alignStart="@+id/lbl_temp"
+                android:layout_marginBottom="15dp"
+                android:textSize="21dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:text="°C"
+                android:id="@+id/lbl_temp_units"
+                android:layout_below="@+id/lbl_temp"
+                android:layout_toEndOf="@+id/txv_temp"
+                android:layout_marginLeft="3dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#FF204A87"
+            android:minWidth="150dp"
+            android:layout_rowWeight="1" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:text="Ammonium"
+                android:id="@+id/lbl_amm"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:text="9999"
+                android:id="@+id/txv_amm"
+                android:layout_below="@+id/lbl_amm"
+                android:layout_marginLeft="15dp"
+                android:layout_alignStart="@+id/lbl_amm"
+                android:layout_marginBottom="15dp"
+                android:textSize="21dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:text="mg/L"
+                android:id="@+id/lbl_amm_units"
+                android:layout_below="@+id/lbl_amm"
+                android:layout_toEndOf="@+id/txv_amm"
+                android:layout_marginLeft="3dp" />
+        </RelativeLayout>
+    </GridLayout>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_read"
+        android:src="@android:drawable/ic_menu_rotate"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#FF507AB7"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/gridLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+</RelativeLayout>

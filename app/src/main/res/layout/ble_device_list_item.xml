@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/img_device_stat"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_not_found"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20sp"
+        android:text="Unknown Device"
+        android:id="@+id/txv_device_name"
+        android:layout_alignTop="@+id/img_device_stat"
+        android:layout_alignEnd="@+id/txv_device_addr"
+        android:layout_alignStart="@+id/txv_device_addr"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:34:56:AB:CD:EF"
+        android:id="@+id/txv_device_addr"
+        android:layout_below="@+id/txv_device_name"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/img_device_stat"
+        android:layout_alignBottom="@+id/img_device_stat" />
+
+</RelativeLayout>
