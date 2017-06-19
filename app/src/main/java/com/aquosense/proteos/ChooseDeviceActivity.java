@@ -58,8 +58,6 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
                         display("Device Selected: " + fd.getName() + " (" + fd.getAddress() + ")");
 
                         finish();
-
-                        return;
                     }
                 }
         );
@@ -78,13 +76,9 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
                         } else {
                             display("Device Discovery Started");
                         }
-
-                        return;
                     }
                 }
         );
-
-        return;
     }
 
     @Override
@@ -99,8 +93,6 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
 
             _bIsReceiverRegistered = true;
         }
-
-        return;
     }
 
     @Override
@@ -115,8 +107,6 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
         }
 
         super.onStop();
-
-        return;
     }
 
     @Override
@@ -126,7 +116,6 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
         }
 
         super.onDestroy();
-        return;
     }
 
     private final BroadcastReceiver _receiver = new BroadcastReceiver() {
@@ -150,7 +139,7 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
                 /* Check if we already have the device in our list */
                 for (FoundDevice fd : _dvcList) {
                     if (fd.getAddress().equals(deviceAddr)) {
-                        if (fd.getName() != deviceName) {
+                        if (fd.getName().equals(deviceName)) {
                             display("Updated Device Entry: " + deviceName + " (" + deviceAddr + ")");
                         }
                         fd.setName(deviceName);
@@ -180,8 +169,6 @@ public class ChooseDeviceActivity extends ServiceBindingActivity {
                     }
                 }
             }
-
-            return;
         }
     };
 }

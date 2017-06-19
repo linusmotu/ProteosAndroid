@@ -52,7 +52,5 @@ public class MainActivity extends AppCompatActivity {
             txvBoundDevice.setText("Target Device: " + boundDeviceName + " (" + boundDeviceAddr  + ")");
             txvBoundDevice.setTextColor(0xFF229922);
         }
-
-        return;
     }
 }

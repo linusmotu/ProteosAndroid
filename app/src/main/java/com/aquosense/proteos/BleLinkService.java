@@ -63,8 +63,6 @@ public class BleLinkService extends BleLinkBaseService {
             registerReceiver(_receiver, filter);
             Logger.info("[BleLinkService] Receiver registered");
         }
-
-        return;
     }
 
     @Override
@@ -75,7 +73,6 @@ public class BleLinkService extends BleLinkBaseService {
         }
 
         super.onDestroy();
-        return;
     }
 
     @Override
@@ -382,36 +379,6 @@ public class BleLinkService extends BleLinkBaseService {
 //        }
         return broadcastDirectly(btBridge, data);
     }
-//
-//    private RetStatus broadcastAsStream(ILinkBridge btBridge, byte data[]) {
-//        ByteArrayInputStream byteStream = new ByteArrayInputStream(data);
-//        byte sendBuffer[] = new byte[_iSerialTxLen];
-//
-//        int bytesRemaining = byteStream.available();
-//        while (bytesRemaining > 0) {
-//            Arrays.fill(sendBuffer, (byte) (0));
-//
-//			/* Read up to _iSerialTxLen bytes from the stream */
-//            byteStream.read(sendBuffer, 0, _iSerialTxLen);
-//            if (broadcastDirectly(btBridge, sendBuffer) != RetStatus.OK) {
-//                return RetStatus.FAILED;
-//            }
-//
-//            bytesRemaining = byteStream.available();
-//
-//            try {
-//                Thread.sleep(50);
-//            } catch (InterruptedException e) {
-//			    /* Do Nothing */
-//            }
-//
-//            if (_broadcastState == BroadcastState.ONGOING) {
-//                return RetStatus.FAILED;
-//            }
-//        }
-//
-//        return RetStatus.OK;
-//    }
 
     protected RetStatus broadcastDirectly(ILinkBridge btBridge, byte data[]) {
         return btBridge.broadcast(data);
@@ -452,8 +419,6 @@ public class BleLinkService extends BleLinkBaseService {
 
                 Logger.info("Added found device: " + newItem.toString());
                 broadcastDeviceFound(newItem);
-
-                return;
             }
         }
     };

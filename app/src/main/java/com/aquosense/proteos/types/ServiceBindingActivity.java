@@ -35,8 +35,6 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
             Intent bindServiceIntent = new Intent(this, BleLinkService.class);
             bindService(bindServiceIntent, _serviceConnection, Context.BIND_AUTO_CREATE);
         }
-
-        return;
     }
 
     @Override
@@ -48,7 +46,6 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
         }
 
         super.onDestroy();
-        return;
     }
 
     /* ******************* */
@@ -57,32 +54,13 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
     protected void display(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Logger.info(msg);
-        return;
-    }
-
-    protected RetStatus setMessageHandler(Handler h) {
-        _messenger = new Messenger(h);
-        return RetStatus.OK;
-    }
-
-    protected RetStatus unsetMessageHandler() {
-        _messenger = null;
-        return RetStatus.OK;
-    }
-
-    protected RetStatus queryService(int msgId) {
-        return callService(msgId, null, _messenger);
-    }
-
-    protected RetStatus queryService(int msgId, Bundle extras) {
-        return callService(msgId, extras, _messenger);
     }
 
     protected RetStatus callService(int msgId) {
-        return callService(msgId, null, null);
+        return callService(msgId, null);
     }
 
-    protected RetStatus callService(int msgId, Bundle extras, Messenger localMessenger) {
+    protected RetStatus callService(int msgId, Bundle extras) {
         Logger.info("Calling BleLinkService with MsgId=" + msgId);
 
         if (_service == null) {
@@ -96,7 +74,7 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
         }
 
         Message msg = Message.obtain(null, msgId, 0, 0);
-        msg.replyTo = localMessenger;
+        msg.replyTo = null;
         msg.setData(extras);
 
         try {
@@ -109,10 +87,6 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
         return RetStatus.OK;
     }
 
-    protected ProteosApp getAppRef() {
-        return (ProteosApp) getApplication();
-    }
-
     /* ********************* */
     /* Private Inner Classes */
     /* ********************* */
@@ -121,16 +95,12 @@ public abstract class ServiceBindingActivity extends AppCompatActivity {
         public void onServiceDisconnected(ComponentName className) {
             _service = null;
             _bIsBound = false;
-
-            return;
         }
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder binder) {
             _service = new Messenger(binder);
             _bIsBound = true;
-
-            return;
         }
     };
 }
