@@ -250,6 +250,7 @@ public class BleLinkService extends BleLinkBaseService {
         return RetStatus.OK;
     }
 
+    //TODO: Crashing on change orientation, maybe limit orientation? or because nothing is connected?
     protected RetStatus disconnect(String address) {
 		/* Set state to UNKNOWN */
         setState(ServiceState.UNKNOWN);

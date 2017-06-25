@@ -1,114 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.aquosense.proteos.MainActivity">
 
+    <Button
+        android:id="@+id/btn_calib"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/img_logo"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/img_logo"
+        android:autoSizeTextType="uniform"
+        android:enabled="false"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:singleLine="true"
+        android:text="Calibrate Sensors"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_view_logs" />
+
+    <Button
+        android:id="@+id/btn_view_logs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/img_logo"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/img_logo"
+        android:enabled="false"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:text="View Logs"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_calib"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:autoSizeTextType="uniform" />
+
+    <Button
+        android:id="@+id/btn_setup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_read"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_toStartOf="@+id/img_logo"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:text="Setup a Device"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read" />
+
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/img_logo"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toStartOf="@+id/img_logo"
+        android:layout_weight="0.90"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:singleLine="true"
+        android:text="Read Water Quality"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_setup"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="225dp"
         android:id="@+id/img_logo"
-        android:src="@drawable/aquosense_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitCenter"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/aquosense_logo"
+        app:layout_constraintBottom_toTopOf="@+id/txv_bound_device"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="No device bound"
         android:textColor="#FFFF2222"
         android:id="@+id/txv_bound_device"
-        android:layout_below="@+id/img_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp" />
+        app:layout_constraintStart_toStartOf="@+id/img_logo"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_logo"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:layout_alignTop="@+id/img_logo"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/img_logo"
-        android:layout_marginTop="60dp"
-        android:id="@+id/linearLayout2">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Read Water Quality"
-            android:id="@+id/btn_read"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_alignTop="@+id/img_logo"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/img_logo"
-            android:layout_weight="0.90"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Setup a Device"
-            android:id="@+id/btn_setup"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_below="@+id/btn_read"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/img_logo"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp" />
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/guideline2"
         android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        android:layout_alignTop="@+id/img_logo"
-        android:layout_marginTop="60dp"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/img_logo">
+        android:id="@+id/guideline3"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Logs"
-            android:id="@+id/btn_view_logs"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_alignTop="@+id/img_logo"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/img_logo"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
-            android:enabled="false" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calibrate Sensors"
-            android:id="@+id/btn_calib"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_alignTop="@+id/img_logo"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/img_logo"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
-            android:enabled="false" />
-    </LinearLayout>
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
