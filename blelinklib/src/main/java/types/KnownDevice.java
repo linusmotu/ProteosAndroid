@@ -13,50 +13,24 @@ public class KnownDevice {
 	private boolean 	 _isRegistered  	= false;
 	private boolean		 _isAddrReversed	= false;
 	
-	public KnownDevice(String name, String address, DeviceStatus status, boolean isRegistered) {
-		this(name, address, status);
-		_isRegistered = isRegistered;
-		
-		return;
-	}
-	
-	public KnownDevice(String name, String address, DeviceStatus status) {
+	private KnownDevice(String name, String address, DeviceStatus status) {
 		this(name, address);
 		_status = status;
-		return;
 	}
-	
-	public KnownDevice(String name, String address) {
+
+	private void setAddressReversed(boolean isReversed) {
+		Logger.warn("The local bluetooth device may be reversing MAC addresses");
+		_isAddrReversed = isReversed;
+	}
+
+	KnownDevice(String name, String address) {
 		_name = name;
 		_addr = address;
 		_reverseAddr = KnownDevice.getReversedMacAddress(address);
-		
-		return;
 	}
 	
 	public void setName(String name) {
 		_name = name;
-	}
-	
-	public void setStatus(DeviceStatus status) {
-		_status = status;
-	}
-	
-	public void setRegistered(boolean isRegistered) {
-		_isRegistered = isRegistered;
-	}
-	
-	public void setAddressReversed(boolean isReversed) {
-		Logger.warn("The local bluetooth device may be reversing MAC addresses");
-		_isAddrReversed = isReversed;
-	}
-	
-	public boolean isRegistered() {
-		return _isRegistered;
-	}
-	
-	public boolean isAddressReversed() {
-		return _isAddrReversed;
 	}
 	
 	public boolean addressMatches(String address) {
@@ -81,36 +55,31 @@ public class KnownDevice {
 	public String getAddress() {
 		return _addr;
 	}
-	
-	public DeviceStatus getStatus() {
-		return _status;
-	}
-	
+
 	public String toString() {
 		String prefix = _isRegistered ? "[R] " : "[U] ";
 		return (prefix + _name + "\n" + _addr + "\n" + _status.toString());
 	}
 
 	private static String getReversedMacAddress(String address) {
-		String newAddr = "";
-
+		StringBuilder newAddr = new StringBuilder();
 		int targIdx = 0;
 		int offset = 2;
 
 		targIdx = address.length() - offset;
 		while (targIdx >= 0) {
 
-			newAddr += address.charAt(targIdx++);
-			newAddr += address.charAt(targIdx);
+			newAddr.append(address.charAt(targIdx++));
+			newAddr.append(address.charAt(targIdx));
 
 			offset += 3;
 			targIdx = address.length() - offset;
 
 			if (targIdx >= 0) {
-				newAddr += ":";
+				newAddr.append(":");
 			}
 		}
 
-		return newAddr;
+		return newAddr.toString();
 	}
 }

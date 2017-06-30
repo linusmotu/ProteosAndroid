@@ -56,8 +56,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
 
 		/* Set this service as an event handler for Bluetooth events */
         _linkBridge.setEventHandler(this);
-
-        return;
     }
 
     @Override
@@ -68,7 +66,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
     @Override
     public void onDestroy() {
         super.onDestroy();
-        return;
     }
 
     @Override
@@ -78,8 +75,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
         intent.putExtra("SENDER_NAME", name);
         intent.putExtra("SENDER_ADDR", address);
         sendBroadcast(intent);
-
-        return;
     }
 
     @Override
@@ -89,14 +84,11 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
         intent.putExtra("SENDER_NAME", name);
         intent.putExtra("SENDER_ADDR", address);
         sendBroadcast(intent);
-
-        return;
     }
 
     @Override
     public void onDeactivated() {
 		/* TODO */
-        return;
     }
 
     @Override
@@ -132,8 +124,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
 		/* Start a new AsyncTask to handle it */
         new HandleReceivedDataTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
                 new ReceivedData(name, address, data));
-
-        return;
     }
 
     protected abstract ILinkBridge getLinkBridge();
@@ -160,7 +150,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
         Logger.info("State set to " + _eState.toString());
 
         broadcastServiceStateChanged();
-        return;
     }
 
     protected BleLinkCompatApplication getAppRef() {
@@ -177,7 +166,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
     protected void display(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Logger.info(msg);
-        return;
     }
 
     protected RetStatus replyLinkState(Messenger replyTo) {
@@ -215,7 +203,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
         Intent foundIntent = new Intent(ACTION_STATE_CHANGED);
         foundIntent.putExtra("STATE", getState().toString());
         sendBroadcast(foundIntent);
-        return;
     }
 
     /** Protected Inner Classes **/
@@ -270,7 +257,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
 
         public void displayMsg(String msg) {
             publishProgress(msg);
-            return;
         }
 
         @Override
@@ -282,7 +268,6 @@ public abstract class BleLinkBaseService extends Service implements LinkEventHan
             display(values[0]);
 
             super.onProgressUpdate(values);
-            return;
         }
     }
 

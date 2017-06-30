@@ -23,8 +23,6 @@ public class ReceivedData {
         _senderAddress = address;//getFixedMacAddress(address);
 
         Logger.info("Data received: " + new String(_aData).trim());
-
-        return;
     }
 
     public byte[] getData() {

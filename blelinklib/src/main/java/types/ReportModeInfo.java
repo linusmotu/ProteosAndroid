@@ -12,34 +12,17 @@ public class ReportModeInfo {
         _channel = channel;
         _maxWaitTime = waitTime;
         _syncTime = syncTime;
-
-        return;
-    }
-
-    public int getChannel() {
-        return _channel;
-    }
-
-    public long getMaxWaitTime() {
-        return _maxWaitTime;
-    }
-
-    public long getSyncTime() {
-        return _syncTime;
     }
 
     public void setChannel(int channel) {
         _channel = channel;
-        return;
     }
 
     public void setMaxWaitTime(long time) {
         _maxWaitTime = time;
-        return;
     }
 
     public void setSyncTime(long time) {
         _syncTime = time;
-        return;
     }
 }
