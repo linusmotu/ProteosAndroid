@@ -81,9 +81,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/lbl_ph"
+                    android:layout_centerVertical="true"
                     android:layout_below="@+id/lbl_ph"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:text="7.00"
                     android:textAppearance="?android:attr/textAppearanceLargeInverse" />
             </RelativeLayout>
@@ -258,6 +260,178 @@
                     android:layout_marginLeft="3dp"
                     android:layout_toEndOf="@+id/txv_amm"
                     android:text="mg/L"
+                    android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#FF204A87"
+                android:gravity="center"
+                android:minWidth="150dp">
+
+                <TextView
+                    android:id="@+id/lbl_amm2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Ammonium"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txv_amm2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/lbl_amm2"
+                    android:layout_below="@+id/lbl_amm2"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="9999"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/lbl_amm2_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lbl_amm2"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toEndOf="@+id/txv_amm2"
+                    android:text="mg/L"
+                    android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#FF204A87"
+                android:gravity="center"
+                android:minWidth="150dp">
+
+                <TextView
+                    android:id="@+id/lbl_tds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Total Dissolved Solid (TDS)"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txv_tds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lbl_tds"
+                    android:layout_alignStart="@+id/lbl_tds"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="60dp"
+                    android:text="9999"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/lbl_tds_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lbl_tds"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toEndOf="@+id/txv_tds"
+                    android:text="ppm"
+                    android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#FF204A87"
+                android:gravity="center"
+                android:minWidth="150dp">
+
+                <TextView
+                    android:id="@+id/lbl_saln"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Salinity"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txv_saln"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/lbl_saln"
+                    android:layout_below="@+id/lbl_saln"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="0dp"
+                    android:text="9999"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/lbl_saln_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lbl_saln"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toEndOf="@+id/txv_saln"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#FF204A87"
+                android:gravity="center"
+                android:minWidth="150dp">
+
+                <TextView
+                    android:id="@+id/lbl_spcg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Specific Gravity"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txv_spcg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/lbl_spcg"
+                    android:layout_below="@+id/lbl_spcg"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="9999"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/lbl_spcg_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lbl_spcg"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toEndOf="@+id/txv_spcg"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmallInverse" />
             </RelativeLayout>
         </LinearLayout>
