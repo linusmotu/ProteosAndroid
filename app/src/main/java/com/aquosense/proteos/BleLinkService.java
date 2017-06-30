@@ -42,6 +42,10 @@ public class BleLinkService extends BleLinkBaseService {
     public static String ACTION_RECV_EC = SERVICE_ACTION + "RECV_EC";
     public static String ACTION_RECV_DO = SERVICE_ACTION + "RECV_DO";
     public static String ACTION_RECV_AM = SERVICE_ACTION + "RECV_AM";
+    public static String ACTION_RECV_AM2 = SERVICE_ACTION + "RECV_AM2";
+    public static String ACTION_RECV_TDS = SERVICE_ACTION + "RECV_TDS";
+    public static String ACTION_RECV_SAL = SERVICE_ACTION + "RECV_SAL";
+    public static String ACTION_RECV_SG = SERVICE_ACTION + "RECV_SG";
 
     public static final String REQ_READ_ALL = "read.start a";
     public static final String RXX_TERM = ";";
@@ -113,11 +117,35 @@ public class BleLinkService extends BleLinkBaseService {
                 String val = dataPart[1];
                 broadcastRecvdEC(val);
             }
+        } else if (dataStr.contains("TDS: ")) {
+            String dataPart[] = dataStr.trim().split(" ");
+            if (dataPart.length == 2) {
+                String val = dataPart[1];
+                broadcastRecvdTDS(val);
+            }
+        } else if (dataStr.contains("SAL: ")) {
+            String dataPart[] = dataStr.trim().split(" ");
+            if (dataPart.length == 2) {
+                String val = dataPart[1];
+                broadcastRecvdSAL(val);
+            }
+        } else if (dataStr.contains("SG: ")) {
+            String dataPart[] = dataStr.trim().split(" ");
+            if (dataPart.length == 2) {
+                String val = dataPart[1];
+                broadcastRecvdSG(val);
+            }
         } else if (dataStr.contains("AMM: ")) {
             String dataPart[] = dataStr.trim().split(" ");
             if (dataPart.length == 2) {
                 String val = dataPart[1];
                 broadcastRecvdAM(val);
+            }
+        } else if (dataStr.contains("AMM2: ")) {
+            String dataPart[] = dataStr.trim().split(" ");
+            if (dataPart.length == 2) {
+                String val = dataPart[1];
+                broadcastRecvdAM2(val);
             }
         } else {
             Logger.warn("Unknown handling for received data from " +
@@ -298,7 +326,6 @@ public class BleLinkService extends BleLinkBaseService {
         Intent intent = new Intent(ACTION_RECV_TM);
         intent.putExtra("VALUE", value);
         sendBroadcast(intent);
-        return;
     }
 
     protected void broadcastRecvdPH(String value) {
@@ -306,7 +333,6 @@ public class BleLinkService extends BleLinkBaseService {
         Intent intent = new Intent(ACTION_RECV_PH);
         intent.putExtra("VALUE", value);
         sendBroadcast(intent);
-        return;
     }
 
     protected void broadcastRecvdDO(String value) {
@@ -314,7 +340,6 @@ public class BleLinkService extends BleLinkBaseService {
         Intent intent = new Intent(ACTION_RECV_DO);
         intent.putExtra("VALUE", value);
         sendBroadcast(intent);
-        return;
     }
 
     protected void broadcastRecvdEC(String value) {
@@ -322,7 +347,27 @@ public class BleLinkService extends BleLinkBaseService {
         Intent intent = new Intent(ACTION_RECV_EC);
         intent.putExtra("VALUE", value);
         sendBroadcast(intent);
-        return;
+    }
+
+    protected void broadcastRecvdTDS(String value) {
+		/* Broadcast our received data for our receivers */
+        Intent intent = new Intent(ACTION_RECV_TDS);
+        intent.putExtra("VALUE", value);
+        sendBroadcast(intent);
+    }
+
+    protected void broadcastRecvdSAL(String value) {
+		/* Broadcast our received data for our receivers */
+        Intent intent = new Intent(ACTION_RECV_SAL);
+        intent.putExtra("VALUE", value);
+        sendBroadcast(intent);
+    }
+
+    protected void broadcastRecvdSG(String value) {
+		/* Broadcast our received data for our receivers */
+        Intent intent = new Intent(ACTION_RECV_SG);
+        intent.putExtra("VALUE", value);
+        sendBroadcast(intent);
     }
 
     protected void broadcastRecvdAM(String value) {
@@ -330,7 +375,13 @@ public class BleLinkService extends BleLinkBaseService {
         Intent intent = new Intent(ACTION_RECV_AM);
         intent.putExtra("VALUE", value);
         sendBroadcast(intent);
-        return;
+    }
+
+    protected void broadcastRecvdAM2(String value) {
+		/* Broadcast our received data for our receivers */
+        Intent intent = new Intent(ACTION_RECV_AM2);
+        intent.putExtra("VALUE", value);
+        sendBroadcast(intent);
     }
 
     protected void broadcastDeviceFound(FoundDevice device) {
@@ -341,7 +392,6 @@ public class BleLinkService extends BleLinkBaseService {
         foundIntent.putExtra("LOST_STATUS", false);
         foundIntent.putExtra("RSSI", device.getRssi());
         sendBroadcast(foundIntent);
-        return;
     }
 
     protected void broadcastDeviceLost(FoundDevice device) {
@@ -352,7 +402,6 @@ public class BleLinkService extends BleLinkBaseService {
         foundIntent.putExtra("LOST_STATUS", true);
         foundIntent.putExtra("RSSI", device.getRssi());
         sendBroadcast(foundIntent);
-        return;
     }
 
 

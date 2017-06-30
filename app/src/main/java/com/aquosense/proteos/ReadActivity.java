@@ -59,6 +59,10 @@ public class ReadActivity extends ServiceBindingActivity {
         _sensorValues.put("CONDUCTIVITY", "0.0");
         _sensorValues.put("TEMPERATURE", "0.0");
         _sensorValues.put("AMMONIUM", "0.0");
+        _sensorValues.put("AMMONIUM2", "0.0");
+        _sensorValues.put("TOTALDISSOLVEDSOLID", "0.0");
+        _sensorValues.put("SALINITY", "0.0");
+        _sensorValues.put("SPECIFICGRAVITY", "0.0");
     }
 
     @Override
@@ -74,6 +78,10 @@ public class ReadActivity extends ServiceBindingActivity {
             intentFilter.addAction(BleLinkService.ACTION_RECV_EC);
             intentFilter.addAction(BleLinkService.ACTION_RECV_TM);
             intentFilter.addAction(BleLinkService.ACTION_RECV_AM);
+            intentFilter.addAction(BleLinkService.ACTION_RECV_AM2);
+            intentFilter.addAction(BleLinkService.ACTION_RECV_TDS);
+            intentFilter.addAction(BleLinkService.ACTION_RECV_SAL);
+            intentFilter.addAction(BleLinkService.ACTION_RECV_SG);
 
             registerReceiver(_receiver, intentFilter);
             _bIsReceiverRegistered = true;
@@ -135,6 +143,10 @@ public class ReadActivity extends ServiceBindingActivity {
         outState.putString("VALUE_EC", _sensorValues.get("CONDUCTIVITY"));
         outState.putString("VALUE_TM", _sensorValues.get("TEMPERATURE"));
         outState.putString("VALUE_AM", _sensorValues.get("AMMONIUM"));
+        outState.putString("VALUE_AM2", _sensorValues.get("AMMONIUM2"));
+        outState.putString("VALUE_TDS", _sensorValues.get("TOTALDISSOLVEDSOLID"));
+        outState.putString("VALUE_SAL", _sensorValues.get("SALINITY"));
+        outState.putString("VALUE_SG", _sensorValues.get("SPECIFICGRAVITY"));
 
         super.onSaveInstanceState(outState);
     }
@@ -182,6 +194,34 @@ public class ReadActivity extends ServiceBindingActivity {
             TextView txvSensor = (TextView) findViewById(R.id.txv_amm);
             txvSensor.setText(val);
             _sensorValues.put("AMMONIUM", val);
+        }
+
+        val = savedInstanceState.getString("VALUE_AM2");
+        if (val != null) {
+            TextView txvSensor = (TextView) findViewById(R.id.txv_amm2);
+            txvSensor.setText(val);
+            _sensorValues.put("AMMONIUM2", val);
+        }
+
+        val = savedInstanceState.getString("VALUE_TDS");
+        if (val != null) {
+            TextView txvSensor = (TextView) findViewById(R.id.txv_tds);
+            txvSensor.setText(val);
+            _sensorValues.put("TOTALDISSOLVEDSOLID", val);
+        }
+
+        val = savedInstanceState.getString("VALUE_SAL");
+        if (val != null) {
+            TextView txvSensor = (TextView) findViewById(R.id.txv_sal);
+            txvSensor.setText(val);
+            _sensorValues.put("SALINITY", val);
+        }
+
+        val = savedInstanceState.getString("VALUE_SG");
+        if (val != null) {
+            TextView txvSensor = (TextView) findViewById(R.id.txv_sg);
+            txvSensor.setText(val);
+            _sensorValues.put("SPECIFICGRAVITY", val);
         }
     }
 
@@ -259,18 +299,51 @@ public class ReadActivity extends ServiceBindingActivity {
 
                 _iSensorsRead++;
 
-            } else if (BleLinkService.ACTION_RECV_TM.equals(action)) {
+            } else if (BleLinkService.ACTION_RECV_AM.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
 
-                TextView txvSensor = (TextView) findViewById(R.id.txv_temp);
+                TextView txvSensor = (TextView) findViewById(R.id.txv_amm);
                 txvSensor.setText(val);
-                _sensorValues.put("TEMPERATURE", val);
+                _sensorValues.put("AMMONIUM", val);
 
                 _iSensorsRead++;
 
+            } else if (BleLinkService.ACTION_RECV_AM2.equals(action)) {
+                String val = intent.getStringExtra("VALUE");
+
+                TextView txvSensor = (TextView) findViewById(R.id.txv_amm2);
+                txvSensor.setText(val);
+                _sensorValues.put("AMMONIUM2", val);
+
+                _iSensorsRead++;
+            } else if (BleLinkService.ACTION_RECV_TDS.equals(action)) {
+                String val = intent.getStringExtra("VALUE");
+
+                TextView txvSensor = (TextView) findViewById(R.id.txv_tds);
+                txvSensor.setText(val);
+                _sensorValues.put("TOTALDISSOLVEDSOLID", val);
+
+                _iSensorsRead++;
+
+            } else if (BleLinkService.ACTION_RECV_SAL.equals(action)) {
+                String val = intent.getStringExtra("VALUE");
+
+                TextView txvSensor = (TextView) findViewById(R.id.txv_sal);
+                txvSensor.setText(val);
+                _sensorValues.put("SALINITY", val);
+
+                _iSensorsRead++;
+            } else if (BleLinkService.ACTION_RECV_SG.equals(action)) {
+                    String val = intent.getStringExtra("VALUE");
+
+                    TextView txvSensor = (TextView) findViewById(R.id.txv_sg);
+                    txvSensor.setText(val);
+                    _sensorValues.put("SPECIFICGRAVITY", val);
+
+                    _iSensorsRead++;
             }
 
-            if (_iSensorsRead >= 4) {
+            if (_iSensorsRead >= 8) {
                 _bIsReadTriggered = false;
             }
         }

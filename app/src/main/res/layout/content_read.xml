@@ -360,7 +360,7 @@
                 android:minWidth="150dp">
 
                 <TextView
-                    android:id="@+id/lbl_saln"
+                    android:id="@+id/lbl_sal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -370,11 +370,11 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txv_saln"
+                    android:id="@+id/txv_sal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/lbl_saln"
-                    android:layout_below="@+id/lbl_saln"
+                    android:layout_alignStart="@+id/lbl_sal"
+                    android:layout_below="@+id/lbl_sal"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="0dp"
                     android:text="9999"
@@ -382,12 +382,12 @@
                     android:textSize="21dp" />
 
                 <TextView
-                    android:id="@+id/lbl_saln_units"
+                    android:id="@+id/lbl_sal_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lbl_saln"
+                    android:layout_below="@+id/lbl_sal"
                     android:layout_marginLeft="3dp"
-                    android:layout_toEndOf="@+id/txv_saln"
+                    android:layout_toEndOf="@+id/txv_sal"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmallInverse" />
             </RelativeLayout>
@@ -403,7 +403,7 @@
                 android:minWidth="150dp">
 
                 <TextView
-                    android:id="@+id/lbl_spcg"
+                    android:id="@+id/lbl_sg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -413,11 +413,11 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txv_spcg"
+                    android:id="@+id/txv_sg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/lbl_spcg"
-                    android:layout_below="@+id/lbl_spcg"
+                    android:layout_alignStart="@+id/lbl_sg"
+                    android:layout_below="@+id/lbl_sg"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="15dp"
                     android:text="9999"
@@ -425,12 +425,12 @@
                     android:textSize="21dp" />
 
                 <TextView
-                    android:id="@+id/lbl_spcg_units"
+                    android:id="@+id/lbl_sg_units"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lbl_spcg"
+                    android:layout_below="@+id/lbl_sg"
                     android:layout_marginLeft="3dp"
-                    android:layout_toEndOf="@+id/txv_spcg"
+                    android:layout_toEndOf="@+id/txv_sg"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmallInverse" />
             </RelativeLayout>
