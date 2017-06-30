@@ -26,7 +26,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
     private String _deviceAddress = "";
     private HashMap<String, String> _sensorValues = new HashMap<>();
-    private int _iSensorsRead = 4;
+    private int _iSensorsRead = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,8 @@ public class ReadActivity extends ServiceBindingActivity {
                     public void onClick(View v) {
                         if (!_bIsConnected) {
                             display("Not yet connected");
-                        } else if (_iSensorsRead < 4) {
-                            display("Awaiting results from " + (4 - _iSensorsRead) + " sensors");
+                        } else if (_iSensorsRead < 8) {
+                            display("Awaiting results from " + (8 - _iSensorsRead) + " sensors");
                         } else {
                             new ReadDataTask().execute(_deviceAddress);
                         }
