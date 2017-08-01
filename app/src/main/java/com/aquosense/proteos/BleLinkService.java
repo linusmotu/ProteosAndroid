@@ -36,7 +36,9 @@ public class BleLinkService extends BleLinkBaseService {
     public static final int MSG_QUERY_STATE 		= 7;
     public static final int MSG_QUERY_LINK_STATE 	= 8;
     public static final int MSG_READ_ALL 			= 9;
+    public static final int MSG_CALIBRATE 			= 10;
 
+    //Read messages
     public static String ACTION_RECV_TM = SERVICE_ACTION + "RECV_TM";
     public static String ACTION_RECV_PH = SERVICE_ACTION + "RECV_PH";
     public static String ACTION_RECV_EC = SERVICE_ACTION + "RECV_EC";
@@ -48,6 +50,12 @@ public class BleLinkService extends BleLinkBaseService {
     public static String ACTION_RECV_SG = SERVICE_ACTION + "RECV_SG";
 
     public static final String REQ_READ_ALL = "read.start a";
+
+    //Calibration messages
+    public static String ACTION_RECV_CAL = SERVICE_ACTION + "RECV_CAL";
+
+    public static final String REQ_CAL_MSG = "cal";
+
     public static final String RXX_TERM = ";";
 
     private int _iSerialTxLen = Constants.MAX_TX_LEN;
@@ -88,6 +96,7 @@ public class BleLinkService extends BleLinkBaseService {
     protected boolean isReceivedDataValid(ReceivedData data) {
         return true;
     }
+
 
     @Override
     protected RetStatus handleReceivedData(HandleReceivedDataTask task, String sender, String address, byte[] data) {
@@ -147,6 +156,9 @@ public class BleLinkService extends BleLinkBaseService {
                 String val = dataPart[1];
                 broadcastRecvdAM2(val);
             }
+            //TODO: Find how the data is sent to us so we can parse correctly
+        } else if (dataStr.contains("*OK") || dataStr.contains("*ER")) {
+            broadcastRecvdCAL(dataStr);
         } else {
             Logger.warn("Unknown handling for received data from " +
                     sender + " (" + address + "): " + new String(data));
@@ -195,6 +207,10 @@ public class BleLinkService extends BleLinkBaseService {
                 break;
             case MSG_READ_ALL:
                 status = sendReadAllRequest();
+                break; //TODO: Check if this breaks anything
+            case MSG_CALIBRATE:
+                status = sendCalibrationRequest("");
+                break;
             default:
                 Logger.warn("Unknown service message: " + msg.what);
                 status = RetStatus.OK;
@@ -384,6 +400,13 @@ public class BleLinkService extends BleLinkBaseService {
         sendBroadcast(intent);
     }
 
+    protected void broadcastRecvdCAL(String value) {
+		/* Broadcast our received data for our receivers */
+        Intent intent = new Intent(ACTION_RECV_CAL);
+        intent.putExtra("VALUE", value);
+        sendBroadcast(intent);
+    }
+
     protected void broadcastDeviceFound(FoundDevice device) {
 		/* Broadcast our received data for our receivers */
         Intent foundIntent = new Intent(ACTION_UPDATE_FOUND);
@@ -421,7 +444,21 @@ public class BleLinkService extends BleLinkBaseService {
         return RetStatus.OK;
     }
 
+    protected RetStatus sendCalibrationRequest(String calibrationMessage) {
+        _tRequestLock.lock();
+        ILinkBridge linkBridge = getLinkBridge();
 
+        RetStatus status;
+        status = performBroadcast(linkBridge, (calibrationMessage + RXX_TERM).getBytes());
+        if (status != RetStatus.OK) {
+            Logger.err("Failed to broadcast CALIBRATION request");
+            _tRequestLock.unlock();
+            return RetStatus.FAILED;
+        }
+
+        _tRequestLock.unlock();
+        return RetStatus.OK;
+    }
 
     protected RetStatus performBroadcast(ILinkBridge btBridge, byte data[]) {
 //        if (data.length > _iSerialTxLen) {

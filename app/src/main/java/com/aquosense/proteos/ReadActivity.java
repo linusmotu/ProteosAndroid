@@ -243,7 +243,6 @@ public class ReadActivity extends ServiceBindingActivity {
 
             return null;
         }
-
     }
 
     private final BroadcastReceiver _receiver = new BroadcastReceiver() {

@@ -34,6 +34,10 @@
             android:name=".ReadActivity"
             android:label="@string/title_activity_read"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".CalibrateActivaty"
+            android:label="@string/title_activity_calibrate"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

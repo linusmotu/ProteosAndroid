@@ -19,7 +19,7 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/img_logo"
         android:autoSizeTextType="uniform"
-        android:enabled="false"
+        android:enabled="true"
         android:paddingBottom="25dp"
         android:paddingTop="25dp"
         android:singleLine="true"
