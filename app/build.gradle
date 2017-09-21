@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "$rootProject.versions.buildToolsVersion"
 
     defaultConfig {
         applicationId "com.aquosense.proteos"
@@ -25,5 +25,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.versions.support_lib"
     compile "com.android.support:design:$rootProject.versions.support_lib"
     compile project(':blelinklib')
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.versions.constraintLayout"
 }

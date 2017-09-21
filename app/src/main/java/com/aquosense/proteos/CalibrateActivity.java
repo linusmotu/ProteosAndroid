@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 import types.RetStatus;
 
-public class CalibrateActivaty extends ServiceBindingActivity implements View.OnClickListener {
+public class CalibrateActivity extends ServiceBindingActivity implements View.OnClickListener {
     private boolean _bIsReceiverRegistered = false;
     private boolean _bIsReadTriggered = false;
     private int _iSensorsRead = 8;
