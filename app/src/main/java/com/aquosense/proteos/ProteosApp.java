@@ -26,6 +26,8 @@ public class ProteosApp extends Application implements BleLinkCompatApplication 
             Toast.makeText(this, "Sorry, your phone does not support Bluetooth LE",
                     Toast.LENGTH_LONG).show();
         }
+
+        return;
     }
 
     @Override

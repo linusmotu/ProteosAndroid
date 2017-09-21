@@ -2,7 +2,6 @@ package com.aquosense.proteos.types;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +23,11 @@ public class BleDeviceListAdapter extends ArrayAdapter<FoundDevice> {
     public BleDeviceListAdapter(Context context, List<FoundDevice> list) {
         super(context, R.layout.ble_device_list_item, list);
         _context = context;
+        return;
     }
 
     @Override
-    @NonNull
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater =
                     (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,15 +39,33 @@ public class BleDeviceListAdapter extends ArrayAdapter<FoundDevice> {
             return convertView;
         }
 
-        TextView txvName = convertView.findViewById(R.id.txv_device_name);
+        TextView txvName = (TextView) convertView.findViewById(R.id.txv_device_name);
         if (fd.getName().length() > 20) {
             txvName.setText(fd.getName().substring(0, 20));
         } else {
             txvName.setText(fd.getName());
         }
 
-        TextView txvAddr = convertView.findViewById(R.id.txv_device_addr);
+        TextView txvAddr = (TextView) convertView.findViewById(R.id.txv_device_addr);
         txvAddr.setText(fd.getAddress());
+
+//        convertView.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        SharedPreferences userSettings =
+//                                _context.getSharedPreferences("APP_SETTINGS", Context.MODE_PRIVATE);
+//
+//                        /* Save the chosen device to shared prefs */
+//                        userSettings.edit()
+//                                .putString("DEVICE_NAME", fd.getName())
+//                                .putString("DEVICE_ADDR", fd.getAddress())
+//                                .commit();
+//
+//                        return;
+//                    }
+//                }
+//        );
 
         return convertView;
     }

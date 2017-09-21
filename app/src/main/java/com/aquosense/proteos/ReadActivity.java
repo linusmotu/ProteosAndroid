@@ -26,7 +26,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
     private String _deviceAddress = "";
     private HashMap<String, String> _sensorValues = new HashMap<>();
-    private int _iSensorsRead = 4;
+    private int _iSensorsRead = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class ReadActivity extends ServiceBindingActivity {
                     public void onClick(View v) {
                         if (!_bIsConnected) {
                             display("Not yet connected");
-                        } else if (_iSensorsRead < 4) {
+                        } else if (_iSensorsRead < 8) {
                             display("Awaiting results from " + (4 - _iSensorsRead) + " sensors");
                         } else {
                             new ReadDataTask().execute(_deviceAddress);
@@ -91,7 +91,7 @@ public class ReadActivity extends ServiceBindingActivity {
                 new Runnable() {
                     @Override
                     public void run() {
-                        if (_deviceAddress.equals("")) {
+                        if (_deviceAddress == "") {
                             return;
                         }
 
@@ -103,13 +103,15 @@ public class ReadActivity extends ServiceBindingActivity {
 
                         Bundle extras = new Bundle();
                         extras.putString("DEVICE_ADDR", _deviceAddress);
-                        status = callService(BleLinkService.MSG_CONNECT, extras);
+                        status = callService(BleLinkService.MSG_CONNECT, extras, null);
                         if (status != RetStatus.OK) {
                             display("Connect failed");
                         }
                     }
                 }, 1000
         );
+
+        return;
     }
 
     @Override
@@ -124,6 +126,7 @@ public class ReadActivity extends ServiceBindingActivity {
         }
 
         super.onStop();
+        return;
     }
 
     @Override
@@ -133,6 +136,7 @@ public class ReadActivity extends ServiceBindingActivity {
         }
 
         super.onDestroy();
+        return;
     }
 
     @Override
@@ -149,6 +153,7 @@ public class ReadActivity extends ServiceBindingActivity {
         outState.putString("VALUE_SG", _sensorValues.get("SPECIFICGRAVITY"));
 
         super.onSaveInstanceState(outState);
+        return;
     }
 
     @Override
@@ -223,11 +228,15 @@ public class ReadActivity extends ServiceBindingActivity {
             txvSensor.setText(val);
             _sensorValues.put("SPECIFICGRAVITY", val);
         }
+
+        return;
     }
 
     private class ReadDataTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
+            String deviceAddr = params[0];
+
             try {
                 Thread.sleep(1200);
             } catch (InterruptedException e) {
@@ -346,6 +355,8 @@ public class ReadActivity extends ServiceBindingActivity {
             if (_iSensorsRead >= 8) {
                 _bIsReadTriggered = false;
             }
+
+            return;
         }
     };
 }
