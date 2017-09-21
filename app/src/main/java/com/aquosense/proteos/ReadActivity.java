@@ -8,13 +8,21 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.aquosense.proteos.types.ServiceBindingActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import types.RetStatus;
 import utils.Logger;
@@ -232,6 +240,32 @@ public class ReadActivity extends ServiceBindingActivity {
         return;
     }
 
+    public void logandupload(String data, boolean append){
+        String directoryName = "aquosense";
+        String fileName = "receivedData_" + getDateToday() + ".txt";
+
+        File dir = new File(android.os.Environment.getExternalStorageDirectory(), directoryName);
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        File f = new File(dir + File.separator + fileName);
+        try {
+            FileOutputStream fOut = new FileOutputStream(f, append);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            myOutWriter.write(data + "\n");
+            myOutWriter.close();
+            fOut.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getDateToday() {
+        DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        return dfDate.format(Calendar.getInstance().getTime());
+    }
+
     private class ReadDataTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
@@ -274,7 +308,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_PH.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_ph);
                 txvSensor.setText(val);
                 _sensorValues.put("PH", val);
@@ -283,7 +317,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_DO.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_do);
                 txvSensor.setText(val);
                 _sensorValues.put("DO2", val);
@@ -292,7 +326,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_EC.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_ec);
                 txvSensor.setText(val);
                 _sensorValues.put("CONDUCTIVITY", val);
@@ -310,7 +344,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_AM.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_amm);
                 txvSensor.setText(val);
                 _sensorValues.put("AMMONIUM", val);
@@ -319,7 +353,7 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_AM2.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_amm2);
                 txvSensor.setText(val);
                 _sensorValues.put("AMMONIUM2", val);
@@ -327,7 +361,7 @@ public class ReadActivity extends ServiceBindingActivity {
                 _iSensorsRead++;
             } else if (BleLinkService.ACTION_RECV_TDS.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_tds);
                 txvSensor.setText(val);
                 _sensorValues.put("TOTALDISSOLVEDSOLID", val);
@@ -336,20 +370,20 @@ public class ReadActivity extends ServiceBindingActivity {
 
             } else if (BleLinkService.ACTION_RECV_SAL.equals(action)) {
                 String val = intent.getStringExtra("VALUE");
-
+                logandupload(val, true);
                 TextView txvSensor = (TextView) findViewById(R.id.txv_sal);
                 txvSensor.setText(val);
                 _sensorValues.put("SALINITY", val);
 
                 _iSensorsRead++;
             } else if (BleLinkService.ACTION_RECV_SG.equals(action)) {
-                    String val = intent.getStringExtra("VALUE");
+                String val = intent.getStringExtra("VALUE");
+                logandupload(val, true);
+                TextView txvSensor = (TextView) findViewById(R.id.txv_sg);
+                txvSensor.setText(val);
+                _sensorValues.put("SPECIFICGRAVITY", val);
 
-                    TextView txvSensor = (TextView) findViewById(R.id.txv_sg);
-                    txvSensor.setText(val);
-                    _sensorValues.put("SPECIFICGRAVITY", val);
-
-                    _iSensorsRead++;
+                _iSensorsRead++;
             }
 
             if (_iSensorsRead >= 8) {
